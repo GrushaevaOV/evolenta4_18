@@ -20,9 +20,6 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-    @Autowired
-    private PersonRepository repository;
-
     @GetMapping()
     public Iterable<Person> getPersons() {
         return service.findAll();

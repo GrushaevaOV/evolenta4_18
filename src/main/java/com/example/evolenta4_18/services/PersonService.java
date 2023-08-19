@@ -20,22 +20,22 @@ public class PersonService {
         return repository.findAll();
     }
 
-    public Optional<Person> findOne(int id) {
-        return repository.findById(id);
+    public Optional<Person> findOne(int personId) {
+        return repository.findById(personId);
     }
 
     public Person savePerson(Person person) {
         return repository.save(person);
     }
 
-    public void delete(int id) {
-        repository.deleteById(id);
+    public void delete(int personId) {
+        repository.deleteById(personId);
     }
 
-    public ResponseEntity<Person> update(int id, Person person) {
-        Optional<Person> foundPerson = repository.findById(id);
+    public ResponseEntity<Person> update(int personId, Person person) {
+        Optional<Person> foundPerson = repository.findById(personId);
         if (foundPerson.isPresent()) {
-            person.setId(id);
+            person.setId(personId);
             return new ResponseEntity<>(repository.save(person), HttpStatus.OK);
         } else
             return new ResponseEntity<>(repository.save(person), HttpStatus.CREATED);
@@ -53,8 +53,8 @@ public class PersonService {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Person> deleteMessage (int id){
-        Optional<Person> foundPerson = repository.findById(id);
+    public ResponseEntity<Person> deleteMessage (int personId){
+        Optional<Person> foundPerson = repository.findById(personId);
         if (foundPerson.isPresent()){
             foundPerson.get().getMessages().clear();
             return new ResponseEntity<>(repository.save(foundPerson.get()), HttpStatus.OK);
@@ -62,8 +62,8 @@ public class PersonService {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    public Iterable<Message> showMessage (int id) {
-        Optional<Person> foundPerson = repository.findById(id);
+    public Iterable<Message> showMessage (int personId) {
+        Optional<Person> foundPerson = repository.findById(personId);
         return foundPerson.get().getMessages();
     }
 }
