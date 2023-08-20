@@ -50,12 +50,12 @@ public class PersonController {
         return service.addMeesageToPerson(id, message);
     }
 
-    @PutMapping("/{id}/delete-message")
+    @PutMapping("/{id}/delete-messages")
     public ResponseEntity<Person> deleteMessagePerson (@PathVariable int id){
         return service.deleteMessage(id);
     }
 
-    @GetMapping("/{id}/show-message")
+    @GetMapping("/{id}/show-messages")
     public Iterable<Message> showMessagePerson (@PathVariable int id) {
         return service.showMessage(id);
     }
